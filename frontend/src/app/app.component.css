@@ -1,41 +1,16 @@
-body {
-    padding-top: 0;
-}
-
-.container {
-    width: 100%;
-    background-color: #654878;
+.principal {
     padding: 0;
-}
-
-.container.white {
+    margin: 57px 0px 0px 0px !important;
     width: 100%;
-    background-color: white;
-}
-
-.masthead {
-    margin-top: 0!important;
-    padding-top: 2rem;
-}
-
-.starter-template {
-    text-align: center;
+    box-sizing: border-box;
+    height: 100vh;
 }
 
 .navbar {
     background-color: #654878!important;
+    height: 57px;
 }
 
-#marcoDegradado {
-    margin-top: 50px!important;
-    background-color: rgb(255 255 255 / 42%)!important;
-    position: fixed!important;
-    margin-left: auto!important;
-    float: right!important;
-    margin-top: 70px!important;
-    background-attachment: scroll;
-}
-
-.bg-morado {
-    background-color: blueviolet!important;
+.container-fluid {
+    background-color: #654878!important;
 }

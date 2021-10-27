@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(  private fb: FormBuilder,
                 private router: Router ) {
     this.FormLogin();
-   }
+   
+  }
 
   ngOnInit(): void {
   }
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
         text: 'Espere por favor...'
       });
       
-      this.router.navigate(['Billetera']);
+      this.router.navigate(['Landing']);
     
     }
   }
