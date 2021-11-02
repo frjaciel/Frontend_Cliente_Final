@@ -11,13 +11,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { SinginComponent } from './component/singin/singin.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CategoriasComponent } from './component/categorias/categorias.component';
+import { TiendasComponent } from './component/tiendas/tiendas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LandingComponent,
-    SinginComponent
+    SinginComponent,
+    CategoriasComponent,
+    TiendasComponent
   ],
   imports: [
     BrowserModule,

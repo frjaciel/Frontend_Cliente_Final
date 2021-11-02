@@ -17,10 +17,6 @@
     border-bottom: 1px solid antiquewhite;
 }
 
-.card:hover {
-    cursor: pointer;
-}
-
 .titulos {
     background-color: #FE5755;
     position: relative;
@@ -50,9 +46,3 @@
     margin-right: auto;
     margin-top: auto;
 }*/
-
-@media only screen and (max-width: 500px) {
-    .imagenInicio {
-        display: none !important;
-    }
-}

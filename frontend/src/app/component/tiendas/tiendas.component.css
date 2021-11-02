@@ -1,11 +1,13 @@
-.categorias {
+.tiendas {
     width: 100%;
     margin: 0;
     padding-top: 1px;
     padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.categorias .btn {
+.tiendas .btn {
     background-color: #FE5755!important;
     color: white;
     border-radius: 30px;
@@ -42,17 +44,4 @@
 .container .tituloTiendas {
     text-align: left;
     font-weight: bold;
-}
-
-
-/*.titulos h4 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-}*/
-
-@media only screen and (max-width: 500px) {
-    .imagenInicio {
-        display: none !important;
-    }
 }

@@ -1,41 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css']
+  selector: 'app-tiendas',
+  templateUrl: './tiendas.component.html',
+  styleUrls: ['./tiendas.component.css']
 })
-export class LandingComponent implements OnInit {
+export class TiendasComponent implements OnInit {
   
-    categorias: any[]= [
-      {
-        nombre: "restaurantes",
-        icono: "assets/img/iconos/restaurante.png" 
-      },
-      {
-        nombre: "supermercados",
-        icono: "assets/img/iconos/supermercado.png" 
-      },
-      {
-        nombre: "farmacias",
-        icono: "assets/img/iconos/farmacia.png" 
-      },
-      {
-        nombre: "ropa",
-        icono: "assets/img/iconos/ropa.png" 
-      },
-      {
-        nombre: "zapatos",
-        icono: "assets/img/iconos/zapatos.png" 
-      },
-      {
-        nombre: "celulares",
-        icono: "assets/img/iconos/celular.png" 
-      }
-    ];
-  
-    tiendas: any[]=
+  tiendas: any[]=
     [
       {
         nombre: "Carrion",
@@ -79,9 +52,21 @@ export class LandingComponent implements OnInit {
       },
     ];
 
-  constructor() { }
+
+  constructor(
+    private router: Router
+              )
+  {
+    
+    this.generarTiendas();
+  }
 
   ngOnInit(): void {
+  }
+
+  generarTiendas(){
+    console.log('tiendas generadas');
+    //this.router.navigate(['Tiendas']);
   }
 
 }
