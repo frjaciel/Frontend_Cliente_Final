@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from "../../services/login.service";
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,9 +13,11 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
   login: FormGroup;
+  email: string;
 
   constructor(  private fb: FormBuilder,
-                private router: Router ) {
+                private router: Router,
+                private loginServ: LoginService ) {
     this.FormLogin();
    
   }
@@ -48,8 +52,13 @@ export class LoginComponent implements OnInit {
         text: 'Espere por favor...'
       });
       
+      this.email = this.loginServ.IniciarSesion(this.login.value, true).email;
+          
+      Swal.close();
+      this.loginServ.permiso$.emit('true');
+      this.loginServ.email$.emit(this.email);
       this.router.navigate(['Landing']);
-    
+  
     }
   }
 

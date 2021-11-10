@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService, Permiso } from "../app/services/login.service";
 
 declare var $: any;
 declare var jQuery: any;
@@ -11,10 +12,29 @@ declare var jQuery: any;
 export class AppComponent implements OnInit {
   title = 'frontend';
 
-  constructor() {
+  listAccs: Permiso[] = [];
+  loggedIn: boolean;
+  email: string;
+
+  constructor(private loginServ: LoginService) {
    
   }
 
   ngOnInit(): void {
+
+    this.loginServ.permiso$.subscribe( (texto:boolean) => {
+      this.loggedIn = texto;
+      this.listAccs = this.loginServ.getListaPermisos();
+    });
+
+    this.loginServ.email$.subscribe( texto => {
+      this.email = texto;
+    });
+
+  }
+
+  Logout(){
+    this.loginServ.logout();
+    this.loggedIn = false;
   }
 }

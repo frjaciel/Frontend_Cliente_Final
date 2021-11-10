@@ -7,18 +7,45 @@
         <span class="navbar-toggler-icon"></span>
       </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;" *ngIf="!loggedIn">
                 <li class="nav-item">
                     <a class="nav-link active" id="a-home" aria-current="page" [routerLink]="['Landing']">Home</a>
                 </li>
             </ul>
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;" *ngIf="loggedIn">
+                <li class="nav-item active" *ngFor=" let permiso of listAccs">
+                    <a class="nav-link" [routerLink]=[permiso.nombre] tabindex="-1">{{permiso.nombre}}</a>
+                </li>
+            </ul>
             <div class="d-flex">
-                <ul class="navbar-nav ml-auto float-end">
+                <ul class="navbar-nav ml-auto float-end" *ngIf="!loggedIn">
                     <li class="nav-item active ">
                         <a class="nav-link" id="a-login" [routerLink]="['Login']">Iniciar Sesion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="a-singin" [routerLink]="['Singin']">Registrate</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto float-end" *ngIf="loggedIn">
+                    <li class="dropdown">
+                        <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/img/image 13.png" alt="">{{email}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item nav-link" [routerLink]="['EditUsuario']">
+                                Editar Perfil
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item nav-link" (click)="Logout()" [routerLink]="['Landing']">
+                                Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <img src="assets/img/image 14.png" alt="">
                     </li>
                 </ul>
             </div>

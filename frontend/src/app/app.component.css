@@ -14,3 +14,11 @@
 .container-fluid {
     background-color: #654878!important;
 }
+
+.dropdown {
+    margin-right: 10px !important;
+}
+
+.dropdown-menu {
+    background-color: #654878!important;
+}
