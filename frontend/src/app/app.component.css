@@ -13,6 +13,7 @@
 
 .container-fluid {
     background-color: #654878!important;
+    padding-top: 12px;
 }
 
 .dropdown {

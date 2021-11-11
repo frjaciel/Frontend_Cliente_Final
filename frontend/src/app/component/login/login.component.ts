@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       Swal.close();
       this.loginServ.permiso$.emit('true');
       this.loginServ.email$.emit(this.email);
-      this.router.navigate(['Landing']);
+      this.router.navigate(['Categorias']);
   
     }
   }
