@@ -5,13 +5,13 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let categoria of categorias; let i= index">
+                <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let categoria of categorias; ">
                     <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black;">
                         <img [src]="categoria.icono" class="card-img-top" alt="...">
                         <div class="card-body" style="font-size: x-large;">
                             <h5 class="card-title">{{ categoria.nombre}}</h5>
-                            <p class="card-text"></p>
-                            <button class="btn">Hacer pedido</button>
+                            <p class="textoTiendas"></p>
+                            <button class="btn" (click)="verTiendasxCat(categoria.id)">Hacer pedido</button>
                         </div>
                     </div>
                 </div>

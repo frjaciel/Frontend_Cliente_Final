@@ -5,18 +5,16 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let tienda of tiendas; let i= index">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let tienda of tiendasxcategoria; let i= index">
                     <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black;">
                         <img [src]="tienda.icono" class="card-img-top" alt="...">
                         <div class="card-body" style="font-size: x-large;">
-                            <h5 class="card-title ">{{ tienda.nombre}}</h5>
-                            <p class="textoTiendas">
-                                {{tienda.informacion}}
-                            </p>
+                            <h5 class="card-title tituloTiendas">{{ tienda.nombre}}</h5>
+                            <p class="textoTiendas">{{tienda.informacion}}</p>
+                            <button class="btn" (click)="verProductos(tienda.id)">Hacer pedido</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

@@ -1,11 +1,13 @@
-.categorias {
+.productos {
     width: 100%;
     margin: 0;
     padding-top: 1px;
     padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.categorias .btn {
+.productos .btn {
     background-color: #FE5755!important;
     color: white;
     border-radius: 30px;
@@ -16,6 +18,10 @@
     width: auto;
     height: 256px;
     border-bottom: 1px solid antiquewhite;
+}
+
+.card:hover {
+    cursor: pointer;
 }
 
 .titulos {
@@ -31,19 +37,12 @@
     align-items: center;
 }
 
-.container .textoTiendas {
+.container .textoproductos {
     font-size: medium;
     text-align: left;
 }
 
-.container .tituloTiendas {
+.container .tituloproductos {
     text-align: left;
     font-weight: bold;
 }
-
-
-/*.titulos h4 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-}*/

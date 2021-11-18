@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoriasService, Categoria } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-categorias',
@@ -7,45 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent implements OnInit {
-  categorias: any[]= [
-    {
-      nombre: "restaurantes",
-      icono: "assets/img/iconos/restaurante.png" 
-    },
-    {
-      nombre: "supermercados",
-      icono: "assets/img/iconos/supermercado.png" 
-    },
-    {
-      nombre: "farmacias",
-      icono: "assets/img/iconos/farmacia.png" 
-    },
-    {
-      nombre: "ropa",
-      icono: "assets/img/iconos/ropa.png" 
-    },
-    {
-      nombre: "zapatos",
-      icono: "assets/img/iconos/zapatos.png" 
-    },
-    {
-      nombre: "celulares",
-      icono: "assets/img/iconos/celular.png" 
-    }
-  ];
 
+  categorias:Categoria[];
 
-
-  constructor(
-    private router: Router
-  ) { 
-    this.verCategorias();
+  constructor(  private router: Router,
+                private categoriaService: CategoriasService) { 
+    
   }
 
   ngOnInit(): void {
+    this.categorias = this.categoriaService.getCatergorias();
+  }
+
+  verTiendasxCat(idx:number){
+
+    this.router.navigate(['/TiendasXCategoria', idx]);
+
   }
   
-  verCategorias(){
-    console.log('categorias generadas');
-  }
+ 
 }

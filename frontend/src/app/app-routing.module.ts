@@ -5,6 +5,8 @@ import { LoginComponent } from './component/login/login.component';
 import { SinginComponent } from './component/singin/singin.component';
 import { CategoriasComponent } from "./component/categorias/categorias.component";
 import { TiendasComponent } from "./component/tiendas/tiendas.component";
+import { TiendasXCategoriaComponent } from "./component/tiendasxcategoria/tiendasxcategoria.component";
+import { ProductosxtiendaComponent } from "./component/productosxtienda/productosxtienda.component";
 
 const routes: Routes = [
     {path: 'Landing', component: LandingComponent },
@@ -12,6 +14,8 @@ const routes: Routes = [
     {path: 'Singin', component: SinginComponent},
     {path: 'Categorias', component: CategoriasComponent},
     {path: 'Tiendas', component: TiendasComponent},
+    {path: 'TiendasXCategoria/:id', component: TiendasXCategoriaComponent},
+    {path: 'ProductosXTienda/:id', component: ProductosxtiendaComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'Landing' }
 ];
 
