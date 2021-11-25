@@ -46,56 +46,64 @@ export class CategoriasService {
         id: 1,
         nombre: "Carrion",
         icono: "assets/img/tiendas/1.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet." 
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 4 
       },
       {
         idCategoria: 2,
         id: 2,
         nombre: "La Colonia",
         icono: "assets/img/tiendas/2.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 2  
       },
       {
         idCategoria: 5,
         id: 3,
         nombre: "Payless",
         icono: "assets/img/tiendas/3.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 5  
       },
       {
         idCategoria: 3,
         id: 4,
         nombre: "Farmacia Siman",
         icono: "assets/img/tiendas/4.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 3  
       },
       {
         idCategoria: 1,
         id: 5,
         nombre: "Burguer King",
         icono: "assets/img/tiendas/5.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 2  
       },
       {
         idCategoria: 1,
         id: 6,
         nombre: "Tacostado",
         icono: "assets/img/tiendas/6.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 3  
       },
       {
         idCategoria: 1,
         id: 7,
         nombre: "Pizza Hut",
         icono: "assets/img/tiendas/7.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 4  
       },
       {
         idCategoria: 1,
         id: 8,
         nombre: "Little Ceasars",
         icono: "assets/img/tiendas/8.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
+        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
+        estrellas: 5  
       },
     ];
     
@@ -138,5 +146,6 @@ export interface Tienda{
   id: number,
   nombre: string,
   icono: string,
-  informacion: string
+  informacion: string,
+  estrellas: number
 }

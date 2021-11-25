@@ -12,6 +12,10 @@ export class ProductosxtiendaComponent implements OnInit {
 
   productosxtienda: Producto[];
   closeResult = '';
+  cantidad = 0;
+  nombre;
+  icono;
+  descripcion;
 
   constructor(private router: Router,
               private activateRoute: ActivatedRoute,
@@ -26,7 +30,13 @@ export class ProductosxtiendaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  DescripcionCompra(idx:number){
+  DescripcionCompra(idx:number, content ){
+
+    this.nombre = this.productosService.getProductoxId(idx).nombre;
+    this.icono = this.productosService.getProductoxId(idx).icono;
+    this.descripcion = this.productosService.getProductoxId(idx).informacion;
+
+    this.open(content);
 
   }
 
@@ -47,5 +57,27 @@ export class ProductosxtiendaComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  cantidadProd(operacion: string){
+    
+    if (this.cantidad >= 0) {
+      switch(operacion) { 
+        case "+": { 
+          this.cantidad = this.cantidad + 1;
+          break; 
+        } 
+        case "-": { 
+          this.cantidad = this.cantidad - 1;
+          break; 
+        } 
+        default: { 
+          //statements; 
+          break; 
+        } 
+      } 
+    }
+
+  }
+
 
 }

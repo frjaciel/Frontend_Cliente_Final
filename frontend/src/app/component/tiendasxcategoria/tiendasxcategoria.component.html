@@ -1,8 +1,5 @@
 <div class="masthead col-12 text-white text-center">
     <section class="tiendas" style="background-color: white!important;">
-        <div class="titulos">
-            <h4 class="masthead-heading text-uppercase  mb-0">tiendas</h4>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let tienda of tiendasxcategoria; let i= index">
@@ -11,6 +8,11 @@
                         <div class="card-body" style="font-size: x-large;">
                             <h5 class="card-title tituloTiendas">{{ tienda.nombre}}</h5>
                             <p class="textoTiendas">{{tienda.informacion}}</p>
+                            <div class="star">
+                                <h6>
+                                    <app-estrella [rating]="5" [max]="tienda.estrellas" [readonly]="readonly"></app-estrella>
+                                </h6>
+                            </div>
                             <button class="btn" (click)="verProductos(tienda.id)">Hacer pedido</button>
                         </div>
                     </div>

@@ -37,6 +37,14 @@
     align-items: center;
 }
 
+.busqueda {
+    margin-top: 50px !important;
+    margin-bottom: 30px;
+    align-items: center;
+    position: relative;
+    display: flex;
+}
+
 .container .textoproductos {
     font-size: medium;
     text-align: left;
@@ -45,4 +53,10 @@
 .container .tituloproductos {
     text-align: left;
     font-weight: bold;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

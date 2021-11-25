@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriasService } from "../app/services/categorias.service";
 import { LoginService } from "../app/services/login.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EstrellaComponent } from './component/estrella/estrella.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CategoriasComponent,
     TiendasComponent,
     TiendasXCategoriaComponent,
-    ProductosxtiendaComponent
+    ProductosxtiendaComponent,
+    EstrellaComponent
   ],
   imports: [
     BrowserModule,

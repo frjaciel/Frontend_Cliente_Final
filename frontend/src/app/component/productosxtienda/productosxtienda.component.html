@@ -1,8 +1,5 @@
 <div class="masthead col-12 text-white text-center">
     <section class="productos" style="background-color: white!important;">
-        <div class="titulos">
-            <h4 class="masthead-heading text-uppercase  mb-0">tiendas</h4>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let producto of productosxtienda; let i= index">
@@ -10,10 +7,8 @@
                         <img [src]="producto.icono" class="card-img-top" alt="...">
                         <div class="card-body" style="font-size: x-large;">
                             <h5 class="card-title tituloproductos">{{ producto.nombre}}</h5>
-                            <p class="textoproductos">
-                                {{producto.informacion}}
-                            </p>
-                            <button class="btn" (click)="DescripcionCompra(producto.id)" (click)="open(DescripProducto)">Hacer pedido</button>
+                            <p class="textoproductos">{{producto.informacion}}</p>
+                            <button class="btn" (click)="DescripcionCompra(producto.id, DescripProducto)">Hacer pedido</button>
                         </div>
                     </div>
                 </div>
@@ -29,13 +24,15 @@
         </button>
     </div>
     <div class="modal-body">
-        <img src="../../../assets/img/Productos/1.png" class="card-img-top" alt="...">
+        <h5 class="card-title tituloproductos">{{nombre}}</h5>
+        <img src="{{icono}}" class="card-img-top" alt="...">
+        <p class="textoproductos">{{descripcion}}</p>
         <form [formGroup]="">
             <div class="form-group ">
                 <div class="input-group mb-3" style="height: 32px;">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="fas fa-minus"></i></button>
-                    <input type="text" class="form-control text-center" formControlName="Cantidad" placeholder="0" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="cantidadProd('-')"><i class="fas fa-minus"></i></button>
+                    <input type="number" class="form-control text-center" formControlName="Cantidad" value='{{cantidad}}' aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="cantidadProd('+')"><i class="fas fa-plus"></i></button>
                     <small *ngIf=" " class="text-danger ">Ingrese 6 dígitos</small>
                 </div>
                 <!--div class="form-group">

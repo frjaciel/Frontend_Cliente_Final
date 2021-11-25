@@ -9,6 +9,10 @@ import { CategoriasService, Categoria, Tienda } from '../../services/categorias.
 })
 export class TiendasXCategoriaComponent implements OnInit {
 
+  public max: number;
+  public rating: number;
+  public readonly: boolean = false;
+
   tiendasxcategoria: Tienda[];
 
   constructor(private router: Router,
@@ -22,7 +26,7 @@ export class TiendasXCategoriaComponent implements OnInit {
             }
 
   ngOnInit(): void {
-    
+
   }
 
   verProductos(idx:number){

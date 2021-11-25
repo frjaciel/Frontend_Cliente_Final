@@ -74,9 +74,27 @@ export class ProductosService {
 
       return productosXT;
 
+    }
+
+    getProductoxId(idProducto: number){
+
+      let productosXT: Producto;
+
+      for (let producto of this.Productos) {
+
+        const elemento = producto.id;
+        
+        if (elemento != idProducto) {
+          continue;
+        }else{
+            productosXT = producto;
+        }
+
+      }
+
+      return productosXT;
 
     }
-    
 }
 
 export interface Producto{
