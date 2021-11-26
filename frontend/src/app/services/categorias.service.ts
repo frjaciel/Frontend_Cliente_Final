@@ -113,6 +113,10 @@ export class CategoriasService {
         return this.categorias;
     }
 
+    getTiendas(){
+      return this.tiendas;
+    }
+
     getTiendasxCategoria( idCategoria:number ){
 
       let tiendasXC: Tienda[] = [];

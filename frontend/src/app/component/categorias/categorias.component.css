@@ -5,7 +5,7 @@
     padding-bottom: 30px;
 }
 
-.categorias .btn {
+.container .btn {
     background-color: #FE5755!important;
     color: white;
     border-radius: 30px;
@@ -15,7 +15,7 @@
 .card img {
     width: auto;
     height: 256px;
-    border-bottom: 1px solid antiquewhite;
+    margin-bottom: 20px;
 }
 
 .titulos {
@@ -25,7 +25,6 @@
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 30px;
-    width: 40%;
     color: white;
     height: 60px;
     align-items: center;
@@ -41,9 +40,14 @@
     font-weight: bold;
 }
 
+.busqueda {
+    margin-top: 50px;
+    height: 60px;
+    margin-bottom: 30px;
+    padding: 10px 30px;
+}
 
-/*.titulos h4 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-}*/
+.busqueda .btn-primary {
+    border: 1px solid #ced4da;
+    background: none;
+}

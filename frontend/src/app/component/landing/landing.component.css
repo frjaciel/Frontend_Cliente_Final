@@ -5,20 +5,35 @@
     padding-bottom: 30px;
 }
 
-.categorias .btn {
+.tiendas {
+    width: 100%;
+    margin: 0;
+    padding-top: 1px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn {
     background-color: #FE5755!important;
     color: white;
     border-radius: 30px;
     width: 100%;
 }
 
-.card img {
+.categorias .card img {
+    width: auto;
+    height: 256px;
+    margin-bottom: 20px;
+}
+
+.tiendas .card img {
     width: auto;
     height: 256px;
     border-bottom: 1px solid antiquewhite;
 }
 
-.card:hover {
+.tiendas .card:hover {
     cursor: pointer;
 }
 
@@ -43,6 +58,13 @@
 .container .tituloTiendas {
     text-align: left;
     font-weight: bold;
+}
+
+.star {
+    margin-top: 4px;
+    margin-bottom: 5px;
+    color: #FEAF17;
+    text-align: left;
 }
 
 

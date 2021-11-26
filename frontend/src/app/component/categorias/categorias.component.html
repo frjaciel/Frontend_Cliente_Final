@@ -1,19 +1,19 @@
 <div class="masthead col-12 text-white text-center ">
     <section class="categorias">
         <div class="row g-0">
-            <div class="col-sm-6 col-md-8">
-                <div class="titulos">
+            <div class="col-sm-6 col-md-4 titulos">
+                <div class="">
                     <h4 class="masthead-heading text-uppercase  mb-0">Realiza tus pedidos</h4>
                 </div>
             </div>
-            <div class="col-6 col-md-4">
-                <div class="busqueda">
+            <div class="col-6 col-md-8 busqueda">
+                <div style="vertical-align: center; display: none;">
                     <form class="form-inline">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                            <div class="input-group-prepend" style="align-items: center; padding: 3px; width: 38px;">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Categoria" aria-describedby="btn-busqueda">
+                            <button class="btn btn-primary" type="button" id="btn-busqueda">
                                 <img src="assets/img/iconos/lupa.png" alt="" style="width:24px; height: 24px; margin: auto;">
-                            </div>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -22,9 +22,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let categoria of categorias; ">
-                    <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black;">
-                        <img [src]="categoria.icono" class="card-img-top" alt="...">
+                    <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black; box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);">
                         <div class="card-body" style="font-size: x-large;">
+                            <img [src]="categoria.icono" class="figure-img img-fluid rounded" alt="...">
                             <h5 class="card-title">{{ categoria.nombre}}</h5>
                             <p class="textoTiendas"></p>
                             <button class="btn" (click)="verTiendasxCat(categoria.id)">Hacer pedido</button>

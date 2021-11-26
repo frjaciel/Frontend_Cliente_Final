@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductosService, Producto } from "../../services/productos.service";
+import { ProductosService, Producto } from '../../services/productos.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -13,9 +13,7 @@ export class ProductosxtiendaComponent implements OnInit {
   productosxtienda: Producto[];
   closeResult = '';
   cantidad = 0;
-  nombre;
-  icono;
-  descripcion;
+  producto: Producto;
 
   constructor(private router: Router,
               private activateRoute: ActivatedRoute,
@@ -32,9 +30,7 @@ export class ProductosxtiendaComponent implements OnInit {
 
   DescripcionCompra(idx:number, content ){
 
-    this.nombre = this.productosService.getProductoxId(idx).nombre;
-    this.icono = this.productosService.getProductoxId(idx).icono;
-    this.descripcion = this.productosService.getProductoxId(idx).informacion;
+    this.producto = this.productosService.getProductoxId(idx);
 
     this.open(content);
 

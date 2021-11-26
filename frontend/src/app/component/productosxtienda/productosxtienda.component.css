@@ -60,3 +60,24 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.btn-outline-dark {
+    background-color: #654878!important;
+    color: white;
+    border-radius: 30px;
+    width: 100%;
+}
+
+.modal-body {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.modal-footer {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.modal-header {
+    padding: 10px 10px 10px 30px;
+}

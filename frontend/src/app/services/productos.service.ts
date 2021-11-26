@@ -15,26 +15,26 @@ export class ProductosService {
         {
             idTienda: 5,
             id: 2,
-            nombre: "Hamburger",
+            nombre: "Hamburger1",
             icono: "assets/img/Productos/1.png",
             informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
-            precio: 135.58
+            precio: 225.4
         },
         {
             idTienda: 5,
             id: 3,
-            nombre: "Hamburger",
+            nombre: "Hamburger2",
             icono: "assets/img/Productos/1.png",
             informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
-            precio: 135.58 
+            precio: 80.54
         },
         {
             idTienda: 5,
             id: 4,
-            nombre: "Hamburger",
+            nombre: "Hamburger3",
             icono: "assets/img/Productos/1.png",
             informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet.",
-            precio: 135.58 
+            precio: 254.6
         },
         {
             idTienda: 4,
