@@ -51,13 +51,22 @@ export class LoginComponent implements OnInit {
         icon: 'info',
         text: 'Espere por favor...'
       });
-      
-      this.email = this.loginServ.IniciarSesion(this.login.value, true).email;
-          
-      Swal.close();
-      this.loginServ.permiso$.emit('true');
-      this.loginServ.email$.emit(this.email);
-      this.router.navigate(['Categorias']);
+
+      Swal.showLoading();
+
+      this.loginServ.Registrar(this.login.value)
+      .subscribe(resp => {
+        Swal.close();
+        this.loginServ.permiso$.emit('true');
+        this.loginServ.email$.emit(resp.email);
+        this.router.navigate(['Categorias']);
+      }, (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al autenticar',
+          text: err.message
+        });
+      });
   
     }
   }

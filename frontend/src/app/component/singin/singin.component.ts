@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { validarContraseñaIguales } from "../../validators/app.validar-contraseña-iguales";
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service'
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,7 +16,8 @@ export class SinginComponent implements OnInit {
   singin: FormGroup;
 
   constructor( private fb: FormBuilder,
-               private router: Router) { 
+               private router: Router,
+               private logService: LoginService) { 
       this.FormSingin();
   }
 
@@ -43,15 +46,15 @@ export class SinginComponent implements OnInit {
     this.singin = this.fb.group({
       email: ['Yozabeth@unah.hn', [Validators.required, Validators.pattern('[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]')]],
       numberPhone: ['3354-8658', [Validators.required, Validators.pattern('[0-9]{4}-[0-9]{4}')]],
-      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$')]],
-      Confpassword: ['', Validators.required]
+      password: ['Yocza3007@', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$')]],
+      Confpassword: ['Yocza3007@', Validators.required]
     }, {
       validators: validarContraseñaIguales
     });
   }
 
   Registrar(){
-    console.log(this.NoSonIguales);
+  
     if (this.singin.invalid) {
       return Object.values(this.singin.controls).forEach(control => {
         control.markAsTouched();
@@ -63,7 +66,21 @@ export class SinginComponent implements OnInit {
         text: 'Espere por favor...'
       });
       
-      this.router.navigate(['Landing']);
+      Swal.showLoading();
+
+      this.logService.Registrar(this.singin.value)
+      .subscribe(resp => {
+        Swal.close();
+        this.logService.permiso$.emit('true');
+        this.logService.email$.emit(resp.email);
+        this.router.navigate(['Categorias']);
+      }, (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al autenticar',
+          text: err.message
+        });
+      });
     
     }
   }

@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UsuarioModel } from "../../app/models/usuario.model";
+import { UsuarioModel, UsuarioRModel } from "../../app/models/usuario.model";
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -35,9 +35,24 @@ export class LoginService {
       returnSecureToken: getTockend
     };
 
-    this.GuardarToken('51454');
-    return AutData;
+    return this.http.get('http://127.0.0.1:8888/usuarios/login/' + AutData.email + '/' + AutData.password )
+    .pipe(
+      map (resp => {
+        return resp;
+      })
+    );
     
+  }
+
+  Registrar(usuario: UsuarioRModel) {
+    const AutData = {
+      ...usuario
+    };
+    return this.http.post('http://127.0.0.1:8889/usuarios/', AutData).pipe(
+      map((resp: any) => {
+        return resp;
+      })
+    );
   }
 
   private GuardarToken( idToken: string ){
