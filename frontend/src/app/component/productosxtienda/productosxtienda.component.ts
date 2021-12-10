@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductosService, Producto } from '../../services/productos.service';
+import { ProductosService, Producto, DetalleFact } from '../../services/productos.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { couldStartTrivia } from 'typescript';
 
 @Component({
   selector: 'app-productosxtienda',
@@ -13,24 +15,42 @@ export class ProductosxtiendaComponent implements OnInit {
   productosxtienda: Producto[];
   closeResult = '';
   cantidad = 0;
-  producto: Producto;
+  productoSelect: Producto[];
+  DetalleFactura: DetalleFact[] = [];
+  CantidadCarrito = 0;
+
+  localStorage = window.localStorage;
 
   constructor(private router: Router,
               private activateRoute: ActivatedRoute,
               private productosService: ProductosService,
-              private modalService: NgbModal) { 
+              private modalService: NgbModal,
+              private fb: FormBuilder) { 
 
-              this.activateRoute.params.subscribe(params=>{
-                  this.productosxtienda = this.productosService.getProductosxTienda(params['id']);
-              });
-  }
+        this.activateRoute.params.subscribe( params =>{
+            this.productosService.getProductosxTienda(params['id']).subscribe(resp =>{
+              this.productosxtienda = JSON.parse(resp); 
+          });
+        });  
+ }
 
   ngOnInit(): void {
+    if (localStorage.getItem('DetalleFactura') == null) {
+      localStorage.setItem('DetalleFactura', JSON.stringify(this.DetalleFactura));
+    }else{
+      this.DetalleFactura = JSON.parse(localStorage.getItem('DetalleFactura'));
+    }
+  
+    localStorage.setItem('CantidadCarrito',this.CantidadCarrito.toString());
   }
 
-  DescripcionCompra(idx:number, content ){
+  DescripcionCompra(idx: number, content ){
 
-    this.producto = this.productosService.getProductoxId(idx);
+    this.cantidad = 0;
+
+    this.productosService.getProductoxId(idx).subscribe(resp =>{
+      this.productoSelect = JSON.parse(resp);
+    });
 
     this.open(content);
 
@@ -72,8 +92,29 @@ export class ProductosxtiendaComponent implements OnInit {
         } 
       } 
     }
-
   }
 
+  AgregarAFactura(){
+    
+    let item: DetalleFact;
+
+    this.productoSelect.forEach(item0 =>{
+      item = {
+        idProducto: item0._id,
+        nombreProducto: item0.nombreProducto,
+        idTienda: item0.idTienda,
+        descripcion: item0.descripcion,
+        precio: item0.precio,
+        cantidad: this.cantidad,
+        total: (item0.precio * this.cantidad)
+      };
+    });
+
+    this.CantidadCarrito += 1;
+
+    this.DetalleFactura.push(item);
+    localStorage.setItem('DetalleFactura', JSON.stringify(this.DetalleFactura)); 
+    localStorage.setItem('CantidadCarrito',this.CantidadCarrito.toString());
+  }
 
 }

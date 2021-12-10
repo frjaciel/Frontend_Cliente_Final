@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoriasService, Tienda } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-tiendas',
@@ -7,66 +8,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./tiendas.component.css']
 })
 export class TiendasComponent implements OnInit {
-  
-  tiendas: any[]=
-    [
-      {
-        nombre: "Carrion",
-        icono: "assets/img/tiendas/1.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet." 
-      },
-      {
-        nombre: "La Colonia",
-        icono: "assets/img/tiendas/2.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-      {
-        nombre: "Payless",
-        icono: "assets/img/tiendas/3.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-      {
-        nombre: "Farmacia Siman",
-        icono: "assets/img/tiendas/4.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-      {
-        nombre: "Burguer King",
-        icono: "assets/img/tiendas/5.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-      {
-        nombre: "Tacostado",
-        icono: "assets/img/tiendas/6.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-      {
-        nombre: "Pizza Hut",
-        icono: "assets/img/tiendas/7.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-      {
-        nombre: "Little Ceasars",
-        icono: "assets/img/tiendas/8.png",
-        informacion: "ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet amet."  
-      },
-    ];
 
+  public max: number;
+  public rating: number;
+  public readonly: boolean = false;
 
-  constructor(
-    private router: Router
-              )
-  {
-    
-    this.generarTiendas();
-  }
+  tiendas: Tienda[];
+
+  constructor( private router: Router,
+               private categoriaService: CategoriasService) { }
 
   ngOnInit(): void {
+
+    this.categoriaService.getTiendas().subscribe(resp =>{
+      this.tiendas = JSON.parse(resp); 
+    });
   }
 
-  generarTiendas(){
-    console.log('tiendas generadas');
-    //this.router.navigate(['Tiendas']);
+  verProductos(idx:number){
+    this.router.navigate(['/ProductosXTienda', idx]);
   }
+
 
 }

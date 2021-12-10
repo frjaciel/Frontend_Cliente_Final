@@ -29,8 +29,8 @@
                 <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let categoria of categorias | slice:0:5 ;let i= index">
                     <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black; box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);">
                         <div class="card-body" style="font-size: x-large;">
-                            <img [src]="categoria.icono" class="figure-img img-fluid rounded" alt="...">
-                            <h5 class="card-title">{{ categoria.nombre}}</h5>
+                            <img [src]="categoria.imagen" class="figure-img img-fluid rounded" alt="...">
+                            <h5 class="card-title">{{ categoria.nombreCategoria}}</h5>
                             <p class="textoTiendas"></p>
                             <button class="btn">Hacer pedido</button>
                         </div>
@@ -72,13 +72,13 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let tienda of tiendas | slice:0:5;let i= index ">
                     <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black; box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);">
-                        <img [src]="tienda.icono" class="card-img-top" alt="...">
+                        <img [src]="tienda.logo" class="card-img-top" alt="...">
                         <div class="card-body" style="font-size: x-large;">
-                            <h5 class="card-title tituloTiendas">{{ tienda.nombre}}</h5>
-                            <p class="textoTiendas">{{tienda.informacion}}</p>
+                            <h5 class="card-title tituloTiendas">{{ tienda.nombreEmpresa }}</h5>
+                            <p class="textoTiendas">{{tienda.descripcion}}</p>
                             <div class="star">
                                 <h6>
-                                    <app-estrella [rating]="5" [max]="tienda.estrellas" [readonly]="false"></app-estrella>
+                                    <app-estrella [rating]="5" [max]="tienda.calificacion" [readonly]="false"></app-estrella>
                                 </h6>
                             </div>
                             <button class="btn" [routerLink]="['/Tiendas']">Ver mas</button>

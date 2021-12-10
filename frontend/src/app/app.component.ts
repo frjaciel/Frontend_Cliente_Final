@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
   loggedIn: boolean;
   email: string;
 
+  CantidadCarrito = 0;
+
+  localStorage = window.localStorage;
+
   constructor(private loginServ: LoginService) {
    
   }
@@ -30,6 +34,8 @@ export class AppComponent implements OnInit {
     this.loginServ.email$.subscribe( texto => {
       this.email = texto;
     });
+      
+    this.CantidadCarrito = +localStorage.getItem('CantidadCarrito');
 
   }
 

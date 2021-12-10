@@ -13,11 +13,13 @@ export class CategoriasComponent implements OnInit {
 
   constructor(  private router: Router,
                 private categoriaService: CategoriasService) { 
-    
+              
   }
 
   ngOnInit(): void {
-    this.categorias = this.categoriaService.getCatergorias();
+    this.categoriaService.getCatergorias().subscribe(resp =>{
+      this.categorias = JSON.parse(resp); 
+    });
   }
 
   verTiendasxCat(idx:number){

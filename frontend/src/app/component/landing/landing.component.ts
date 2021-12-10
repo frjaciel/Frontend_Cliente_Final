@@ -17,8 +17,15 @@ export class LandingComponent implements OnInit {
                 private categoriaService: CategoriasService) { }
 
   ngOnInit(): void {
-    this.categorias = this.categoriaService.getCatergorias();
-    this.tiendas = this.categoriaService.getTiendas();
+    
+    this.categoriaService.getCatergorias().subscribe(resp =>{
+      this.categorias = JSON.parse(resp); 
+    });
+
+    this.categoriaService.getTiendas().subscribe(resp =>{
+      this.tiendas = JSON.parse(resp); 
+    });
+    
   }
 
 }

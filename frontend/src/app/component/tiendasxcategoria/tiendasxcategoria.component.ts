@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CategoriasService, Categoria, Tienda } from '../../services/categorias.service';
+import { CategoriasService, Tienda } from '../../services/categorias.service';
 
 @Component({
   selector: 'app-tiendasxcategoria',
@@ -19,11 +19,12 @@ export class TiendasXCategoriaComponent implements OnInit {
               private categoriaService: CategoriasService,
               private activateRoute:ActivatedRoute ) {
               
-                this.activateRoute.params.subscribe( params =>{
-                  this.tiendasxcategoria = this.categoriaService.getTiendasxCategoria(params['id']);
-                });
-
-            }
+    this.activateRoute.params.subscribe( params =>{
+        this.categoriaService.getTiendasxCategoria(params['id']).subscribe(resp =>{
+          this.tiendasxcategoria = JSON.parse(resp); 
+      });
+    });
+  }
 
   ngOnInit(): void {
 

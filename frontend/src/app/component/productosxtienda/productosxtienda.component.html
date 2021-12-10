@@ -4,12 +4,12 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-4" *ngFor="let producto of productosxtienda; let i= index">
                     <div class="card" id="" data-toggle="modal" data-target="#content" style="color:black; box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);">
-                        <img [src]="producto.icono" class="card-img-top" alt="...">
+                        <img [src]="producto.imagen" class="card-img-top" alt="...">
                         <div class="card-body" style="font-size: x-large;">
-                            <h5 class="card-title tituloproductos">{{ producto.nombre}}</h5>
-                            <p class="textoproductos">{{producto.informacion}}</p>
+                            <h5 class="card-title tituloproductos">{{ producto.nombreProducto}}</h5>
+                            <p class="textoproductos">{{producto.descripcion}}</p>
                             <h5 class="card-title tituloproductos">Lps {{ producto.precio}}</h5>
-                            <button class="btn" (click)="DescripcionCompra(producto.id, DescripProducto)">Hacer pedido</button>
+                            <button class="btn" (click)="DescripcionCompra(producto._id, DescripProducto)">Hacer pedido</button>
                         </div>
                     </div>
                 </div>
@@ -24,27 +24,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
-        <h5 class="card-title tituloproductos">{{producto.nombre}}</h5>
-        <div style="text-align: center;"><img src="{{producto.icono}}" class="" alt="..."></div>
-        <p class="textoproductos">{{producto.informacion}}</p>
-        <h5 class="card-title tituloproductos" style="text-align: right; padding-bottom: 20px;">Lps {{producto.precio}}</h5>
-        <form [formGroup]="">
+    <div class="modal-body" *ngFor="let productoS of productoSelect">
+        <h5 class="card-title tituloproductos">{{productoS.nombreProducto}}</h5>
+        <div style="text-align: center;"><img src="{{productoS.imagen}}" class="" alt="..."></div>
+        <p class="textoproductos">{{productoS.descripcion}}</p>
+        <h5 class="card-title tituloproductos" style="text-align: right; padding-bottom: 20px;">Lps {{productoS.precio}}</h5>
+        <form>
             <div class="form-group ">
                 <div class="input-group mb-3" style="height: 32px;">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon1" (click)="cantidadProd('-')"><i class="fas fa-minus"></i></button>
-                    <input type="number" class="form-control text-center" formControlName="Cantidad" value='{{cantidad}}' aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <input type="number" class="form-control text-center" value='{{cantidad}}' aria-label="Example text with button addon" aria-describedby="button-addon1">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="cantidadProd('+')"><i class="fas fa-plus"></i></button>
                     <small *ngIf=" " class="text-danger ">Ingrese 6 dígitos</small>
                 </div>
-                <!--div class="form-group">
-                        <button type="submit" class="btn btn-outline-dark" [disabled]="!CodigoTK.valid" (click)="VerifiCod()" (click)="modal.dismiss('Cross click')">Verificar Codigo</button>
-                    </div-->
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Agregar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" (click)="AgregarAFactura()" [disabled]="cantidad == 0"> Agregar</button>
     </div>
-
 </ng-template>
