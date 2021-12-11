@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosService, Producto, DetalleFact } from '../../services/productos.service';
+import { LoginService } from '../../services/login.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { couldStartTrivia } from 'typescript';
@@ -19,13 +20,12 @@ export class ProductosxtiendaComponent implements OnInit {
   DetalleFactura: DetalleFact[] = [];
   CantidadCarrito = 0;
 
-  localStorage = window.localStorage;
-
   constructor(private router: Router,
               private activateRoute: ActivatedRoute,
               private productosService: ProductosService,
               private modalService: NgbModal,
-              private fb: FormBuilder) { 
+              private fb: FormBuilder,
+              private loginServ: LoginService) { 
 
         this.activateRoute.params.subscribe( params =>{
             this.productosService.getProductosxTienda(params['id']).subscribe(resp =>{
@@ -40,8 +40,11 @@ export class ProductosxtiendaComponent implements OnInit {
     }else{
       this.DetalleFactura = JSON.parse(localStorage.getItem('DetalleFactura'));
     }
-  
-    localStorage.setItem('CantidadCarrito',this.CantidadCarrito.toString());
+    if (localStorage.getItem('CantidadCarrito') == null) {
+      localStorage.setItem('CantidadCarrito', this.CantidadCarrito.toString());
+    }else{
+      this.CantidadCarrito = +localStorage.getItem('CantidadCarrito');
+    }
   }
 
   DescripcionCompra(idx: number, content ){
@@ -115,6 +118,8 @@ export class ProductosxtiendaComponent implements OnInit {
     this.DetalleFactura.push(item);
     localStorage.setItem('DetalleFactura', JSON.stringify(this.DetalleFactura)); 
     localStorage.setItem('CantidadCarrito',this.CantidadCarrito.toString());
+
+    this.loginServ.cantidadCarrito$.emit(this.CantidadCarrito);
   }
 
 }

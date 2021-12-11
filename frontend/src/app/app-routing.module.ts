@@ -7,6 +7,7 @@ import { CategoriasComponent } from "./component/categorias/categorias.component
 import { TiendasComponent } from "./component/tiendas/tiendas.component";
 import { TiendasXCategoriaComponent } from "./component/tiendasxcategoria/tiendasxcategoria.component";
 import { ProductosxtiendaComponent } from "./component/productosxtienda/productosxtienda.component";
+import { FacturaComponent } from "./component/factura/factura.component";
 
 const routes: Routes = [
     {path: 'Landing', component: LandingComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'Tiendas', component: TiendasComponent},
     {path: 'TiendasXCategoria/:id', component: TiendasXCategoriaComponent},
     {path: 'ProductosXTienda/:id', component: ProductosxtiendaComponent},
+    {path: 'Factura', component: FacturaComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'Landing' }
 ];
 

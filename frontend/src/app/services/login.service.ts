@@ -15,6 +15,7 @@ export class LoginService {
 
   permiso$ = new EventEmitter<string>();
   email$ = new EventEmitter<string>();
+  cantidadCarrito$ = new EventEmitter<number>();
 
   private Permisos: any[] = [
     {

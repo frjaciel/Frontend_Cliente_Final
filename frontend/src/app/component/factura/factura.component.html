@@ -1,0 +1,171 @@
+<div class="container">
+    <section style="margin-bottom: 32px;">
+        <div class="row">
+            <div class="col">
+                <h1 class="factura_titulo">FACTURA</h1>
+            </div>
+        </div>
+    </section>
+    <section style="margin-bottom: 32px;">
+        <form>
+            <div class="row g-3 align-items-center">
+                <div class="form-group">
+                    <label for="email" class="etiqueta">C.A.I:</label>
+                    <input type="email" class="form-control" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX" readonly>
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+                <div class="form-group col-4">
+                    <label for="email" class="etiqueta">#Factura:</label>
+                    <input type="email" class="form-control" placeholder="XXX-XXX-XX-XXXXXXXX" readonly>
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+                <div class="form-group col-4">
+                    <label for="email" class="etiqueta">Fecha de emision:</label>
+                    <input type="email" class="form-control" placeholder="{{fechaEmision()}}" readonly>
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+                <div class="form-group col-4">
+                    <label for="email" class="etiqueta">Fecha de Vencimiento:</label>
+                    <input type="email" class="form-control" placeholder="01/01/2022" readonly>
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+                <div class="form-group col-8">
+                    <label for="email" class="etiqueta">Nombre:</label>
+                    <input type="email" class="form-control" placeholder="Nombre Apellido" readonly>
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+                <div class="form-group col-4">
+                    <label for="email" class="etiqueta">Número de Telefono:</label>
+                    <input type="email" class="form-control" placeholder="XXXX-XXXX" readonly>
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+                <div class="form-group">
+                    <label for="email" class="etiqueta">Ubicación:</label>
+                    <input type="email" class="form-control" placeholder="">
+                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                </div>
+            </div>
+        </form>
+    </section>
+    <section style="margin-bottom: 32px;">
+        <div class="table-responsive ">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col" class="descripcion">Descripcion</th>
+                        <th scope="col" class="text-center ">Cantidad</th>
+                        <th scope="col" class="text-end ">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of DetalleFactura; let i=index ">
+                        <th scope="row ">{{i}}</th>
+                        <td>{{item.nombreProducto}}</td>
+                        <td class="descripcion">{{cantMax(item.descripcion)}}</td>
+                        <td class="text-center ">{{item.cantidad}}</td>
+                        <td class="text-end ">{{item.total}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="1" class="descripcion"></td>
+                        <td class="text-center ">SubTotal</td>
+                        <td class="text-end ">{{subtotalCal()}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="1" class="descripcion"></td>
+                        <td class="text-center ">Impuesto</td>
+                        <td class="text-end ">{{impuestoCal()}}</td>
+                    </tr>
+                    <tr class="fw-bold ">
+                        <td colspan="2"></td>
+                        <td colspan="1" class="descripcion"></td>
+                        <td class="text-center ">TOTAL</td>
+                        <td class="text-end ">{{TOTALCal()}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+    <section style="margin-bottom: 32px;">
+        <div>
+            <button class="btn btn-pedido" (click)="RealizarcompraModal(Realizarcompra)">Realizar Compra</button>
+        </div>
+    </section>
+    <section>
+        <div>
+            <div id="titulo">Cuik</div>
+            <div class="separator "></div>
+            <div>227 Cobblestone Road 30000 Bedrock, Cobblestone County</div>
+            <div>http://Cuik.bed | hello@Cuik.bed +555 7 789-1234</div>
+        </div>
+    </section>
+</div>
+<ng-template #Realizarcompra let-modal>
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">Forma de Pago</h6>
+        <button type="button" class="close btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-efectivo-tab" data-bs-toggle="tab" data-bs-target="#nav-efectivo" type="button" role="tab" aria-controls="nav-efectivo" aria-selected="true" (click)="FormaPago('efectivo')">Efectivo</button>
+                <button class="nav-link" id="nav-tarjeta-tab" data-bs-toggle="tab" data-bs-target="#nav-tarjeta" type="button" role="tab" aria-controls="nav-tarjeta" aria-selected="false" (click)="FormaPago('tarjeta')">Tarjeta</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-efectivo" role="tabpanel" aria-labelledby="nav-efectivo-tab">
+                <form>
+                    <div class="form-group">
+                        <label class="etiqueta">Cantidad de cambio</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="nav-tarjeta" role="tabpanel" aria-labelledby="nav-tarjeta-tab">
+                <div style="margin-bottom: 32px; margin-top: 32px;">
+                    <img class="tarjetas" src="assets/img/tarjetascredito/mastercard-mini.png" alt="">
+                    <img class="tarjetas" src="assets/img/tarjetascredito/visa-mini.png" alt="">
+                    <img class="tarjetas" src="assets/img/tarjetascredito/amex-mini.png" alt="">
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label class="etiqueta">Número de tarjeta</label>
+                        <input type="tel" class="form-control" placeholder="XXXX XXXX XXXX XXXX">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-xs-8 no-padding">
+                            <div class="form-group ">
+                                <label class="etiqueta">Expiración</label>
+                                <input type="tel" class="form-control" placeholder="12/22">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-4 ng-scope">
+                            <div class="form-group">
+                                <label class="etiqueta">CVC/CVV</label>
+                                <input type="tel" class="form-control" placeholder="XXX">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="etiqueta">Nombre en la tarjeta</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="etiqueta">Identidad a presentar</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-pedido" (click)="modal.close('Save click')">Continuar</button>
+    </div>
+</ng-template>

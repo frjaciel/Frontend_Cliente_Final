@@ -9,7 +9,7 @@
                             <h5 class="card-title tituloproductos">{{ producto.nombreProducto}}</h5>
                             <p class="textoproductos">{{producto.descripcion}}</p>
                             <h5 class="card-title tituloproductos">Lps {{ producto.precio}}</h5>
-                            <button class="btn" (click)="DescripcionCompra(producto._id, DescripProducto)">Hacer pedido</button>
+                            <button class="btn" (click)="DescripcionCompra(producto._id, modalPago)">Hacer pedido</button>
                         </div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
         </div>
     </section>
 </div>
-<ng-template #DescripProducto let-modal>
+<ng-template #modalPago let-modal>
     <div class="modal-header">
         <h6 class="modal-title" id="modal-basic-title"></h6>
         <button type="button" class="close btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">

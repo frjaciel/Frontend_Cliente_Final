@@ -1,0 +1,62 @@
+@media only screen and (max-width:600px) {
+    .container {
+        padding: 20px 20px !important;
+    }
+    .descripcion {
+        display: none;
+    }
+    .form-control {
+        font-size: 12px;
+    }
+}
+
+.container {
+    font: normal 14px/1.4em 'PT Sans', Sans-serif;
+    margin: 0 auto;
+    padding: 50px 65px;
+    min-height: 1058px;
+    position: relative;
+}
+
+.titulo {
+    color: black;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 1em;
+}
+
+.factura_titulo {
+    font-size: 36px;
+    color: #0a0a0a87;
+}
+
+.btn-pedido {
+    background-color: #FE5755!important;
+    color: white;
+    border-radius: 30px;
+    width: 100%;
+}
+
+.form-control {
+    border-radius: 15px;
+    height: 32px;
+}
+
+.separador {
+    height: 10px !important;
+}
+
+.tarjetas {
+    height: 35px !important;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.etiqueta {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 35px;
+    color: rgba(51, 51, 51, 0.86);
+    margin-bottom: 0px;
+}

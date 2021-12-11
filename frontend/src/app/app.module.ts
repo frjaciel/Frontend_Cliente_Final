@@ -23,6 +23,7 @@ import { CategoriasService } from "../app/services/categorias.service";
 import { LoginService } from "../app/services/login.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EstrellaComponent } from './component/estrella/estrella.component';
+import { FacturaComponent } from './component/factura/factura.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EstrellaComponent } from './component/estrella/estrella.component';
     TiendasComponent,
     TiendasXCategoriaComponent,
     ProductosxtiendaComponent,
-    EstrellaComponent
+    EstrellaComponent,
+    FacturaComponent
   ],
   imports: [
     BrowserModule,

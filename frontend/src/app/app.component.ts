@@ -34,12 +34,16 @@ export class AppComponent implements OnInit {
     this.loginServ.email$.subscribe( texto => {
       this.email = texto;
     });
-      
-    this.CantidadCarrito = +localStorage.getItem('CantidadCarrito');
+
+    this.loginServ.cantidadCarrito$.subscribe ( texto => {
+      this.CantidadCarrito = texto;
+    });
 
   }
 
   Logout(){
+    this.localStorage.removeItem('CantidadCarrito');
+    this.localStorage.removeItem('DetalleFactura');
     this.loginServ.logout();
     this.loggedIn = false;
   }
