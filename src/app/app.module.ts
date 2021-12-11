@@ -4,24 +4,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
-import { LandingComponent } from './component/landing/landing.component';
+import { LandingRepartidoresComponent } from './component/landing-repartidores/landing-repartidores.component';
 
 //Router
 import { AppRoutingModule } from './app-routing.module';
 import { SinginComponent } from './component/singin/singin.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CategoriasComponent } from './component/categorias/categorias.component';
-import { TiendasComponent } from './component/tiendas/tiendas.component';
+import { OrdenesComponent } from './component/ordenes/ordenes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LandingComponent,
+    LandingRepartidoresComponent,
     SinginComponent,
-    CategoriasComponent,
-    TiendasComponent
+    OrdenesComponent
   ],
   imports: [
     BrowserModule,

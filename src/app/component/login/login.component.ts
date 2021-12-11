@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         text: 'Espere por favor...'
       });
       
-      this.router.navigate(['Landing']);
+      this.router.navigate(['Ordenes']);
     
     }
   }

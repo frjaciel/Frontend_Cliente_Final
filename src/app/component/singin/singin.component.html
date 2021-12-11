@@ -6,6 +6,32 @@
             </div>
             <form [formGroup]="singin" (ngSubmit)="Registrar()">
                 <div class="form-group mb-3">
+                    <label for="nombre" class="etiqueta">Nombre Completo:</label>
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre" [class.is-invalid]="NombreNovalido">
+                    <small *ngIf="NombreNovalido" class="text-danger">Valor invalido o Vacío</small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="dni" class="etiqueta">Numero de DNI:</label>
+                    <input type="text" class="form-control" formControlName="dni" placeholder="0801-1990-00447" [class.is-invalid]="DniNoValido">
+                    <small *ngIf="DniNoValido" class="text-danger">Valor invalido o Vacío</small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="nacionalidad" class="etiqueta">Nacionalidad:</label><br>
+                    <select class="form-control">
+                        <option *ngFor="let pais of paises; let i = index">{{pais.nombrePais}}</option>
+                    </select>
+                    <!--<input type="text" class="form-control" formControlName="nacionalidad" placeholder="Hondureña" [class.is-invalid]="NacionalidadNoValido">-->
+                    <small *ngIf="NacionalidadNoValido" class="text-danger">Valor invalido o Vacío</small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="ciudad" class="etiqueta">Ciudad:</label><br>
+                    <select class="form-control">
+                        <option *ngFor="let ciudad of ciudades; let i = index">{{ciudad.nombreCiudad}}</option>
+                    </select>
+                    <!--<input type="text" class="form-control" formControlName="nacionalidad" placeholder="Hondureña" [class.is-invalid]="NacionalidadNoValido">-->
+                    <small *ngIf="CiudadNoValido" class="text-danger">Valor invalido o Vacío</small>
+                </div>
+                <div class="form-group mb-3">
                     <label for="email" class="etiqueta">Correo Electrónico:</label>
                     <input type="email" class="form-control" formControlName="email" placeholder="ejemplo@prueba.com" [class.is-invalid]="CorreoNoValido">
                     <small *ngIf="CorreoNoValido" class="text-danger">Valor invalido o Vacío</small>

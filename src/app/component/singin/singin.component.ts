@@ -11,6 +11,27 @@ import Swal from 'sweetalert2';
 })
 export class SinginComponent implements OnInit {
 
+  paises: any= [
+    {
+      idPais: '01',
+      nombrePais: 'Honduras',
+    },
+    {
+      idPais: '02',
+      nombrePais: 'El Salvador'
+    }
+  ];
+
+  ciudades: any= [
+    {
+      idCiudad: '0801',
+      nombreCiudad: 'Tegucigalpa'
+    },
+    {
+      idCiudad: '0802',
+      nombreCiudad: 'Comayaguela'
+    }
+  ];
   singin: FormGroup;
 
   constructor( private fb: FormBuilder,
@@ -21,6 +42,21 @@ export class SinginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+  get CiudadNoValido(){
+    return this.singin.get('ciudad').invalid && this.singin.get('ciudad').touched;
+  }
+  
+  get DniNoValido(){
+    return this.singin.get('dni').invalid && this.singin.get('dni').touched;
+  }
+  
+  get NacionalidadNoValido(){
+    return this.singin.get('nacionalidad').invalid && this.singin.get('nacionalidad').touched;
+  }
+  get NombreNovalido(){
+    return this.singin.get('nombre').invalid && this.singin.get('nombre').touched;
+  }
   get CorreoNoValido(){
     return this.singin.get('email').invalid && this.singin.get('email').touched;
   }
@@ -41,8 +77,12 @@ export class SinginComponent implements OnInit {
 
   FormSingin(){
     this.singin = this.fb.group({
-      email: ['Yozabeth@unah.hn', [Validators.required, Validators.pattern('[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]')]],
-      numberPhone: ['3354-8658', [Validators.required, Validators.pattern('[0-9]{4}-[0-9]{4}')]],
+      nombre: ['', [Validators.required, Validators.maxLength(100)]],
+      dni: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('[0-9]{4}-[0-9]{4}-[0-9]{5}')]],
+      nacionalidad: ['Honduras', [Validators.required]],
+      ciudad: ['Tegucigalpa', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern('[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]')]],
+      numberPhone: ['', [Validators.required, Validators.pattern('[0-9]{4}-[0-9]{4}')]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$')]],
       Confpassword: ['', Validators.required]
     }, {
@@ -60,10 +100,10 @@ export class SinginComponent implements OnInit {
       Swal.fire({
         allowOutsideClick: false,
         icon: 'info',
-        text: 'Espere por favor...'
+        text: 'Se evaluara tu perfil y un agente se pondra en contacto contigo'
       });
       
-      this.router.navigate(['Landing']);
+      this.router.navigate(['LandingRepartidores']);
     
     }
   }
