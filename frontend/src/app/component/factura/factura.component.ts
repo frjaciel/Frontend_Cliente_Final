@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductosService, Usuario, DetalleFact } from '../../services/productos.service';
 
 @Component({
@@ -29,6 +30,8 @@ export class FacturaComponent implements OnInit {
   impuesto: number = 0;
   comision: number = 30;
   TOTAL: number = 0;
+
+  localStorage = window.localStorage;
   
 
   closeResult = '';
@@ -38,7 +41,8 @@ export class FacturaComponent implements OnInit {
   constructor(private productosService: ProductosService,
               private router: Router,
               private modalService: NgbModal,
-              private fb: FormBuilder) {  
+              private fb: FormBuilder,
+              private loginServ: LoginService) {  
   
     this.ObtenerUbicación();
   }
@@ -148,7 +152,15 @@ export class FacturaComponent implements OnInit {
 
     this.productosService.CrearOrden(orden).subscribe(resp =>{
       console.log(resp);
+
     });
+
+    this.loginServ.cantidadCarrito$.emit(0);
+
+    this.localStorage.removeItem('CantidadCarrito');
+    this.localStorage.removeItem('DetalleFactura');
+
+    this.router.navigate(['Categorias']);
 
   }
 }

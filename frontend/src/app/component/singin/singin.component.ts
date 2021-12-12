@@ -74,6 +74,7 @@ export class SinginComponent implements OnInit {
         this.logService.permiso$.emit('true');
         this.logService.email$.emit(resp.email);
         this.router.navigate(['Categorias']);
+        localStorage.setItem('idUsuario', resp._id);
       }, (err) => {
         Swal.fire({
           icon: 'error',

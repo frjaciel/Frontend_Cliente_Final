@@ -8,6 +8,9 @@
     .form-control {
         font-size: 12px;
     }
+    .identidad {
+        display: none;
+    }
 }
 
 .container {

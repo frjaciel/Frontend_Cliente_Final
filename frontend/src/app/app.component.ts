@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   Logout(){
+    this.localStorage.removeItem('idUsuario');
     this.localStorage.removeItem('CantidadCarrito');
     this.localStorage.removeItem('DetalleFactura');
     this.loginServ.logout();
