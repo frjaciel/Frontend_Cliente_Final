@@ -34,11 +34,11 @@ export class LoginService {
     const AutData = {
       ...usuario
     };
-
+    
     return this.http.get('http://127.0.0.1:8889/usuarios/login/' + AutData.email + '/' + AutData.password )
     .pipe(
       map (resp => {
-        return resp;
+        return JSON.stringify(resp);
       })
     );
     

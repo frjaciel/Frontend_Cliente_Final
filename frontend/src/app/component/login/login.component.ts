@@ -15,6 +15,15 @@ export class LoginComponent implements OnInit {
 
   login: FormGroup;
   email: string;
+  usuario: Usuario = {
+    _id: '',
+    email: '',
+    numberPhone: '',
+    password: '',
+    nombre: '',
+    nacionalidad: '',
+    tipoUsuario: ''
+  };
 
   constructor(  private fb: FormBuilder,
                 private router: Router,
@@ -58,10 +67,10 @@ export class LoginComponent implements OnInit {
       this.loginServ.IniciarSesion(this.login.value)
       .subscribe(resp => {
         Swal.close();
-        let usuario = resp;
-        localStorage.setItem('idUsuario', usuario[0]._id);
+        this.usuario = JSON.parse(resp);
+        localStorage.setItem('idUsuario', this.usuario._id);
         this.loginServ.permiso$.emit('true');
-        this.loginServ.email$.emit(usuario[0].email);
+        this.loginServ.email$.emit(this.usuario.email);
         this.router.navigate(['Categorias']);
       }, (err) => {
         Swal.fire({

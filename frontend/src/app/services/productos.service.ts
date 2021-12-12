@@ -22,6 +22,7 @@ export class ProductosService {
       const AutData = {
         _id: idProducto
       };
+      
       return this.http.get('http://127.0.0.1:8889/productos/'+ AutData._id +'/producto').pipe(
         map((resp) => {
           return JSON.stringify(resp);
@@ -36,6 +37,15 @@ export class ProductosService {
         map((resp) => {
           return JSON.stringify(resp);
         }));
+    }
+
+    CrearOrden(orden){
+      return this.http.post('http://127.0.0.1:8889/ordenes/', orden )
+      .pipe(
+        map (resp => {
+          return resp;
+        })
+      );
     }
 }
 
@@ -52,6 +62,7 @@ export interface DetalleFact{
   idProducto: number,
   nombreProducto: string,
   idTienda: string,
+  tienda: string,
   descripcion: string,
   precio: number,
   cantidad: number,

@@ -24,11 +24,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body" *ngFor="let productoS of productoSelect">
-        <h5 class="card-title tituloproductos">{{productoS.nombreProducto}}</h5>
-        <div style="text-align: center;"><img src="{{productoS.imagen}}" class="" alt="..."></div>
-        <p class="textoproductos">{{productoS.descripcion}}</p>
-        <h5 class="card-title tituloproductos" style="text-align: right; padding-bottom: 20px;">Lps {{productoS.precio}}</h5>
+    <div class="modal-body">
+        <h5 class="card-title tituloproductos">{{productoSelect.nombreProducto}}</h5>
+        <div style="text-align: center;"><img src="{{productoSelect.imagen}}" class="" alt="..."></div>
+        <p class="textoproductos">{{productoSelect.descripcion}}</p>
+        <h5 class="card-title tituloproductos" style="text-align: right; padding-bottom: 20px;">Lps {{productoSelect.precio}}</h5>
         <form>
             <div class="form-group ">
                 <div class="input-group mb-3" style="height: 32px;">

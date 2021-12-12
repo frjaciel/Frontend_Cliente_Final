@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriasService, Tienda } from '../../services/categorias.service';
 import { ProductosService, Producto, DetalleFact } from '../../services/productos.service';
 import { LoginService } from '../../services/login.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +17,24 @@ export class ProductosxtiendaComponent implements OnInit {
   productosxtienda: Producto[];
   closeResult = '';
   cantidad = 0;
-  productoSelect: Producto[];
+  nombreTienda: Tienda = {
+    _id: 0,
+    nombreEmpresa: '',
+    logo: '',
+    calificacion: 0,
+    descripcion: '',
+    idCategoria: ''
+  };
+
+  productoSelect: Producto = {
+    _id: 0,
+    nombreProducto: '',
+    imagen: '',
+    precio: 0,
+    descripcion: '',
+    idTienda: ''
+  };
+
   DetalleFactura: DetalleFact[] = [];
   CantidadCarrito = 0;
 
@@ -25,7 +43,8 @@ export class ProductosxtiendaComponent implements OnInit {
               private productosService: ProductosService,
               private modalService: NgbModal,
               private fb: FormBuilder,
-              private loginServ: LoginService) { 
+              private loginServ: LoginService,
+              private categoriaService: CategoriasService) { 
 
         this.activateRoute.params.subscribe( params =>{
             this.productosService.getProductosxTienda(params['id']).subscribe(resp =>{
@@ -53,10 +72,17 @@ export class ProductosxtiendaComponent implements OnInit {
 
     this.productosService.getProductoxId(idx).subscribe(resp =>{
       this.productoSelect = JSON.parse(resp);
+      this.obtenerTienda(this.productoSelect.idTienda);
     });
 
     this.open(content);
 
+  }
+
+  obtenerTienda(idtienda){
+    this.categoriaService.getTiendasID(idtienda).subscribe(resp=>{
+      this.nombreTienda = JSON.parse(resp);
+    });
   }
 
   open(content) {
@@ -100,18 +126,18 @@ export class ProductosxtiendaComponent implements OnInit {
   AgregarAFactura(){
     
     let item: DetalleFact;
+    let item0 = this.productoSelect;
 
-    this.productoSelect.forEach(item0 =>{
-      item = {
-        idProducto: item0._id,
-        nombreProducto: item0.nombreProducto,
-        idTienda: item0.idTienda,
-        descripcion: item0.descripcion,
-        precio: item0.precio,
-        cantidad: this.cantidad,
-        total: (item0.precio * this.cantidad)
-      };
-    });
+    item = {
+      idProducto: item0._id,
+      nombreProducto: item0.nombreProducto,
+      idTienda: item0.idTienda,
+      tienda: this.nombreTienda.nombreEmpresa,
+      descripcion: item0.descripcion,
+      precio: item0.precio,
+      cantidad: this.cantidad,
+      total: (item0.precio * this.cantidad)
+    };
 
     this.CantidadCarrito += 1;
 

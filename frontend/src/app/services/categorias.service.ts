@@ -36,6 +36,17 @@ export class CategoriasService {
         }));
     }
 
+    getTiendasID (idTienda: string){
+      const AutData = {
+        _id: idTienda
+      };
+      
+      return this.http.get('http://127.0.0.1:8889/tiendas/tiendaid/' + AutData._id).pipe(
+        map((resp) => {
+          return JSON.stringify(resp);
+        }));
+    }
+
 }
 
 export interface Categoria{

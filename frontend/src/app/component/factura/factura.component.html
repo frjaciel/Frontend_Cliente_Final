@@ -7,42 +7,42 @@
         </div>
     </section>
     <section style="margin-bottom: 32px;">
-        <form>
-            <div class="row g-3 align-items-center" *ngFor="let item of Usuario;">
+        <form [formGroup]="ubicacionF">
+            <div class="row g-3 align-items-center">
                 <div class="form-group">
-                    <label for="email" class="etiqueta">C.A.I:</label>
-                    <input type="email" class="form-control" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX" readonly>
+                    <label for="" class="etiqueta">C.A.I:</label>
+                    <input type="" class="form-control" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX" readonly>
                     <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
                 </div>
                 <div class="form-group col-4">
-                    <label for="email" class="etiqueta">#Factura:</label>
-                    <input type="email" class="form-control" placeholder="XXX-XXX-XX-XXXXXXXX" readonly>
+                    <label for="" class="etiqueta">#Factura:</label>
+                    <input type="" class="form-control" placeholder="XXX-XXX-XX-XXXXXXXX" readonly>
                     <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
                 </div>
                 <div class="form-group col-4">
-                    <label for="email" class="etiqueta">Fecha de emision:</label>
-                    <input type="email" class="form-control" placeholder="{{fechaEmision()}}" readonly>
+                    <label for="" class="etiqueta">Fecha de emision:</label>
+                    <input type="" class="form-control" placeholder="{{fechaEmision()}}" readonly>
                     <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
                 </div>
                 <div class="form-group col-4">
-                    <label for="email" class="etiqueta">Identidad</label>
-                    <input type="email" class="form-control" placeholder="0000-0000-00000" readonly>
+                    <label for="" class="etiqueta">Identidad</label>
+                    <input type="" class="form-control" placeholder="0000-0000-00000" readonly>
                     <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
                 </div>
                 <div class="form-group col-8">
-                    <label for="email" class="etiqueta">Nombre:</label>
-                    <input type="email" class="form-control" placeholder="{{item.nombre}}" readonly>
+                    <label for="" class="etiqueta">Nombre:</label>
+                    <input type="" class="form-control" placeholder="{{Usuario.nombre}}" readonly>
                     <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
                 </div>
                 <div class="form-group col-4">
-                    <label for="email" class="etiqueta">Número de Telefono:</label>
-                    <input type="email" class="form-control" placeholder="{{item.numberPhone}}" readonly>
+                    <label for="" class="etiqueta">Número de Telefono:</label>
+                    <input type="" class="form-control" placeholder="{{Usuario.numberPhone}}" readonly>
                     <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
                 </div>
                 <div class="form-group">
-                    <label for="email" class="etiqueta">Ubicación:</label>
-                    <input type="email" class="form-control" placeholder="Agregar ubicacion...">
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                    <label for="" class="etiqueta">Ubicación:</label>
+                    <input type="" class="form-control" formControlName="ubicacion" placeholder="Agregar ubicacion..." [class.is-invalid]="UbicacionVacio">
+                    <small *ngIf="UbicacionVacio" class="text-danger ">Vacío</small>
                 </div>
             </div>
         </form>
@@ -172,58 +172,81 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-pedido" (click)="modal.close('Save click')" (click)="continuar(finalizar)">Continuar</button>
+        <button type="button" class="btn btn-pedido" (click)="modal.close('Save click')" (click)="continuar(finalizarModal)">Continuar</button>
     </div>
 </ng-template>
-<ng-template #finalizar let-modal>
+<ng-template #finalizarModal let-modal>
     <div class="modal-header">
-        <h6 class="modal-title" id="modal-basic-title">Forma de Pago</h6>
+        <h6 class="modal-title" id="modal-basic-title">Factura</h6>
         <button type="button" class="close btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body finalizar">
         <form>
-            <div class="row g-3 align-items-center" *ngFor="let item of Usuario;">
+            <div class="row g-3 align-items-center">
                 <div class="form-group">
-                    <label for="email" class="etiqueta">C.A.I:</label>
-                    <input type="email" class="form-control" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX" readonly>
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
-                </div>
-                <div class="form-group col-4">
-                    <label for="email" class="etiqueta">#Factura:</label>
-                    <input type="email" class="form-control" placeholder="XXX-XXX-XX-XXXXXXXX" readonly>
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
-                </div>
-                <div class="form-group col-4">
-                    <label for="email" class="etiqueta">Fecha de emision:</label>
-                    <input type="email" class="form-control" placeholder="{{fechaEmision()}}" readonly>
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
-                </div>
-                <div class="form-group col-4">
-                    <label for="email" class="etiqueta">Identidad</label>
-                    <input type="email" class="form-control" placeholder="0000-0000-00000" readonly>
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                    <label for="" class="etiqueta">C.A.I:</label>
+                    <br>
+                    <label for="" class="">XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX</label>
                 </div>
                 <div class="form-group col-8">
-                    <label for="email" class="etiqueta">Nombre:</label>
-                    <input type="email" class="form-control" placeholder="{{item.nombre}}" readonly>
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                    <label for="" class="etiqueta">#Factura:</label>
+                    <br>
+                    <label for="" class="">"XXX-XXX-XX-XXXXXXXX"</label>
                 </div>
                 <div class="form-group col-4">
-                    <label for="email" class="etiqueta">Número de Telefono:</label>
-                    <input type="email" class="form-control" placeholder="{{item.numberPhone}}" readonly>
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                    <label for="" class="etiqueta">Fecha de emision:</label>
+                    <br>
+                    <label for="" class="">{{fechaEmision()}}</label>
+                </div>
+                <div class="form-group col-8">
+                    <label for="" class="etiqueta">Nombre:</label>
+                    <br>
+                    <label for="" class="">{{Usuario.nombre}}</label>
+                </div>
+                <div class="form-group col-4">
+                    <label for="" class="etiqueta">#Telefono:</label>
+                    <br>
+                    <label for="" class="">{{Usuario.numberPhone}}</label>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="etiqueta">Ubicación:</label>
-                    <input type="email" class="form-control" placeholder="Agregar ubicacion...">
-                    <!--small *ngIf="CorreoNoValido " class="text-danger ">Valor invalido o Vacío</small-->
+                    <label for="" class="etiqueta">Ubicación:</label>
+                    <label type="">{{ubicacion}}</label>
                 </div>
             </div>
         </form>
+        <hr>
+        <div class="table-responsive ">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="text-start">SubTotal</td>
+                        <td class="text-end ">{{subTotal.toFixed(2)}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Impuesto</td>
+                        <td class="text-end ">{{impuesto.toFixed(2)}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start">Comisión</td>
+                        <td class="text-end ">{{comision.toFixed(2)}}</td>
+                    </tr>
+                    <tr class="fw-bold">
+                        <td class="text-start">TOTAL</td>
+                        <td class="text-end ">{{TOTAL.toFixed(2)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div>
+            <label for="" class="etiqueta">Forma de pago</label>
+            <br>
+            <label for="" class="">{{formaPago}}</label>
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-pedido" (click)="modal.close('Save click')">Finalizar</button>
+        <button type="button" class="btn btn-pedido" (click)="modal.close('Save click')" (click)="finalizar()">Finalizar</button>
     </div>
 </ng-template>

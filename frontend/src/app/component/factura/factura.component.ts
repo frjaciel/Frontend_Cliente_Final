@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ProductosService, Usuario, DetalleFact } from '../../services/productos.service';
@@ -11,7 +12,18 @@ import { ProductosService, Usuario, DetalleFact } from '../../services/productos
 export class FacturaComponent implements OnInit {
 
   DetalleFactura: DetalleFact[] = [];
-  Usuario: Usuario[] = [];
+  Usuario: Usuario = {
+    _id: '',
+    email: '',
+    numberPhone: '',
+    password: '',
+    nombre: '',
+    nacionalidad: '',
+    tipoUsuario: ''
+  };
+
+  ubicacionF: FormGroup;
+  ubicacion: string = '';
 
   subTotal: number = 0;
   impuesto: number = 0;
@@ -21,11 +33,14 @@ export class FacturaComponent implements OnInit {
 
   closeResult = '';
 
-  formaPago: string;
+  formaPago: string = 'efectivo';
 
   constructor(private productosService: ProductosService,
               private router: Router,
-              private modalService: NgbModal,) {  
+              private modalService: NgbModal,
+              private fb: FormBuilder) {  
+  
+    this.ObtenerUbicación();
   }
  
   ngOnInit(): void {
@@ -43,6 +58,16 @@ export class FacturaComponent implements OnInit {
     this.subtotalCal();
     this.impuestoCal();
     this.TOTALCal();
+  }
+
+  get UbicacionVacio(){
+    return this.ubicacionF.get('ubicacion').invalid && this.ubicacionF.get('ubicacion').touched;
+  }
+
+  ObtenerUbicación(){
+    this.ubicacionF = this.fb.group({
+      ubicacion: ['', Validators.required],
+    });
   }
 
   cantMax(text: string){
@@ -73,7 +98,13 @@ export class FacturaComponent implements OnInit {
   }
 
   RealizarcompraModal(content){
-    this.open(content);
+    if (this.ubicacionF.invalid) {
+      return Object.values(this.ubicacionF.controls).forEach(control => {
+        control.markAsTouched();
+      });
+    }else{
+      this.open(content);
+    }
   }
 
   FormaPago(forma){
@@ -99,12 +130,25 @@ export class FacturaComponent implements OnInit {
   }
 
   continuar(content){
+
+    this.ubicacion = this.ubicacionF.get('ubicacion').value;
     this.open(content);
   }
 
   finalizar(){
 
+    let orden = {
+      idUsuario: this.Usuario._id,
+      productos: this.DetalleFactura,
+      estado: "61b2c418f8ed6e8b150d2d38",
+      nombre: this.Usuario.nombre,
+      numberPhone: this.Usuario.numberPhone,
+      ubicacion: this.ubicacionF.get('ubicacion').value
+    };
+
+    this.productosService.CrearOrden(orden).subscribe(resp =>{
+      console.log(resp);
+    });
+
   }
-
-
 }
