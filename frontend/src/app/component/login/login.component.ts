@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from "../../services/login.service";
 
 import Swal from 'sweetalert2';
+import { Usuario } from '../../services/productos.service';
 
 @Component({
   selector: 'app-login',
@@ -35,8 +36,8 @@ export class LoginComponent implements OnInit {
 
   FormLogin(){
     this.login = this.fb.group({
-      email: ['Yozabeth@unah.hn', [Validators.required, Validators.pattern('[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]')]],
-      password: ['Yocza3007@', [Validators.required, Validators.minLength(7)]]
+      email: ['asd@gmail.com', [Validators.required, Validators.pattern('[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]')]],
+      password: ['Asd.1234@', [Validators.required, Validators.minLength(7)]]
     });
   }
 
@@ -54,11 +55,13 @@ export class LoginComponent implements OnInit {
 
       Swal.showLoading();
 
-      this.loginServ.Registrar(this.login.value)
+      this.loginServ.IniciarSesion(this.login.value)
       .subscribe(resp => {
         Swal.close();
+        let usuario = resp;
+        localStorage.setItem('idUsuario', usuario[0]._id);
         this.loginServ.permiso$.emit('true');
-        this.loginServ.email$.emit(resp.email);
+        this.loginServ.email$.emit(usuario[0].email);
         this.router.navigate(['Categorias']);
       }, (err) => {
         Swal.fire({

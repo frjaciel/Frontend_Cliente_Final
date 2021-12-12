@@ -27,6 +27,16 @@ export class ProductosService {
           return JSON.stringify(resp);
         }));
     }
+
+    getUsuarioXId(idUsuario: string){
+      const AutData = {
+        _id: idUsuario
+      };
+      return this.http.get('http://127.0.0.1:8889/usuarios/usuarioID/'+ AutData._id).pipe(
+        map((resp) => {
+          return JSON.stringify(resp);
+        }));
+    }
 }
 
 export interface Producto{
@@ -46,4 +56,14 @@ export interface DetalleFact{
   precio: number,
   cantidad: number,
   total: number
+}
+
+export interface Usuario{
+  _id: string,
+  email: string,
+  numberPhone: string,
+  password: string,
+  nombre: string,
+  nacionalidad: string,
+  tipoUsuario: string
 }

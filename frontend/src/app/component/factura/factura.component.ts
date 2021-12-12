@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ProductosService, Producto, DetalleFact } from '../../services/productos.service';
+import { ProductosService, Usuario, DetalleFact } from '../../services/productos.service';
 
 @Component({
   selector: 'app-factura',
@@ -11,10 +11,13 @@ import { ProductosService, Producto, DetalleFact } from '../../services/producto
 export class FacturaComponent implements OnInit {
 
   DetalleFactura: DetalleFact[] = [];
+  Usuario: Usuario[] = [];
 
   subTotal: number = 0;
   impuesto: number = 0;
+  comision: number = 30;
   TOTAL: number = 0;
+  
 
   closeResult = '';
 
@@ -22,14 +25,24 @@ export class FacturaComponent implements OnInit {
 
   constructor(private productosService: ProductosService,
               private router: Router,
-              private modalService: NgbModal,) { }
+              private modalService: NgbModal,) {  
+  }
  
   ngOnInit(): void {
+  
     if (localStorage.getItem('DetalleFactura') == null) {
       localStorage.setItem('DetalleFactura', JSON.stringify(this.DetalleFactura));
     }else{
       this.DetalleFactura = JSON.parse(localStorage.getItem('DetalleFactura'));
     }
+
+    this.productosService.getUsuarioXId(localStorage.getItem('idUsuario')).subscribe(resp=>{
+      this.Usuario = JSON.parse(resp);
+    });
+
+    this.subtotalCal();
+    this.impuestoCal();
+    this.TOTALCal();
   }
 
   cantMax(text: string){
@@ -43,19 +56,15 @@ export class FacturaComponent implements OnInit {
     this.DetalleFactura.forEach(item=>{
       this.subTotal = this.subTotal + item.total;
     });
-    
-    return this.subTotal;
 
   }
 
   impuestoCal(){
     this.impuesto = this.subTotal * 0.15;
-    return this.impuesto.toFixed(2);
   }
 
   TOTALCal(){
-    this.TOTAL = this.subTotal * 1.15;
-    return this.TOTAL.toFixed(2);
+    this.TOTAL = (this.subTotal * 1.15) + this.comision;
   }
 
   fechaEmision(){
@@ -87,6 +96,14 @@ export class FacturaComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  continuar(content){
+    this.open(content);
+  }
+
+  finalizar(){
+
   }
 
 

@@ -30,10 +30,9 @@ export class LoginService {
 
   constructor(protected http: HttpClient) { }
 
-  IniciarSesion( usuario: UsuarioModel, getTockend: boolean){
+  IniciarSesion( usuario: UsuarioModel ){
     const AutData = {
-      ...usuario,
-      returnSecureToken: getTockend
+      ...usuario
     };
 
     return this.http.get('http://127.0.0.1:8889/usuarios/login/' + AutData.email + '/' + AutData.password )
